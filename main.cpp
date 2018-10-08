@@ -1,6 +1,7 @@
 #include <iostream>
 #include<string.h>
 #include<fstream>
+#include <algorithm>
 using namespace std;
 
 char sir[10001],sir1[10001];
@@ -132,7 +133,7 @@ void pct_b(int L)
     {
         for (int j=1; j<=L; j++)
             if (a[i][j]==1 && a[i+1][j]==1 || a[i][j]==1 && a[i+1][j+1]==1 &&j+1<=L  || a[i][j]==1 && a[i+1][j+1]==1 &&j-1>=1)
-            ok=1;
+                ok=1;
 
     }
     if (ok==1)
@@ -141,11 +142,99 @@ void pct_b(int L)
         cout<<"NU";
 }
 
-void pct_c()
-    {
-       int i=1;
 
+void pct_c(int L)
+{
+    char *p;
+    int N;
+    cin>>N;
+    p=strtok(sir," ");
+    int linie=0;
+    lin=1;
+    while (p && lin<N)
+    {
+        int k=strlen(p);
+        if (linie+k<L)
+        {
+
+            cout<<p;
+            cout<<" ";
+
+            linie=linie+k+1;
+            a[lin][linie]=1;
+        }
+        else if (linie+k==L)
+        {
+            cout<<p<<endl;
+
+            linie=linie+k;
+            a[lin][linie]=1;
+        }
+        else
+        {
+            cout<<endl;
+            lin++;
+            cout<<p<<" ";
+
+            linie=k+1;
+            a[lin][linie]=1;
+
+        }
+        p=strtok(NULL," ");
     }
+    cout<<endl;
+
+    /*
+    // afisare matrice unde am spatiu am pus 1 altfel 0
+
+        for (int i=1; i<=lin; i++)
+        {
+            for (int j=1; j<=L; j++)
+                cout<<a[i][j];
+            cout<<endl;
+        }
+
+        cout<<endl;
+
+    */
+    int lmaximrau=0,ok=0;
+    for (int i=1; i<lin; i++)
+    {
+        for (int j=1; j<=L; j++)
+            if (a[i][j]!=0)
+            {
+                if  (a[i+1][j]!=0)
+                {
+                    a[i+1][j]=max(a[i+1][j],a[i][j]+1);
+                    if (a[i+1][j]>lmaximrau) lmaximrau=a[i+1][j];
+                }
+                if (a[i+1][j-1]!=0)
+                {
+                    a[i+1][j-1]=max(a[i+1][j-1],a[i][j]+1);
+                    if (a[i+1][j-1]>lmaximrau) lmaximrau=a[i+1][j-1];
+                }
+                if (a[i+1][j+1]!=0)
+                {
+                    a[i+1][j+1]=max(a[i+1][j+1],a[i][j]+1);
+                    if (a[i+1][j+1]>lmaximrau) lmaximrau=a[i+1][j+1];
+                }
+
+            }
+    }
+    cout<<lmaximrau<<endl;
+
+    /*
+    // afisare matricea raurilor
+
+                 for (int i=1; i<=lin; i++)
+    {
+        for (int j=1; j<=L; j++)
+            cout<<a[i][j];
+        cout<<endl;
+    }
+    */
+
+}
 
 int main()
 {
@@ -156,6 +245,7 @@ int main()
     int L;
     cin>>L;
     // pct_a(L);
-    pct_b(L);
+    //pct_b(L);
+    pct_c(L);
     return 0;
 }
