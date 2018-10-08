@@ -1,4 +1,5 @@
-# Problema-unibuc---admitere-licenta-informatica
+# Problema-unibuc---admitere-licenta-informatica 2018
+
 (a) Se cite¸ste un num˘ar natural L (20 ≤ L ≤ 1000) ¸si un ¸sir de cel mult 10000 de caractere ce
 cont¸ine cuvinte desp˘art¸ite ˆıntre ele prin cˆate un spat¸iu. Fiecare cuvˆant din ¸sirul de caractere
 citit este format din cel mult L litere mari ale alfabetului englez. S˘a se scrie un program care
